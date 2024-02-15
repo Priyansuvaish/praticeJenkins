@@ -1,9 +1,12 @@
 pipeline { 
     agent any
+    environment {
+        DOCKER_IMAGE_NAME = 'calculator'
+    }
     stages {
         stage('Clone Git') {
             steps {
-                git 'https://github.com/BThangaraju/Jenkins.git'
+                git 'https://github.com/Priyansuvaish/praticeJenkins.git'
             }
         }
         stage('Build Code') {
