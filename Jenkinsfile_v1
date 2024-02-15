@@ -3,25 +3,30 @@ pipeline {
     environment {
         DOCKER_IMAGE_NAME = 'calculator'
     }
+    
     stages {
+
         stage('Clone Git') {
             steps {
                 git 'https://github.com/Priyansuvaish/praticeJenkins.git'
             }
         }
+
         stage('Build Code') {
             steps {
                 sh "chmod u+x Prog1.py"
                 sh "./Prog1.py"
             }
         }
-     stage('Test Code') {
+
+        stage('Test Code') {
             steps {
                 sh "chmod u+x Test.py"
                 sh "./Test.py"
             }
         }
-stage('Build Docker Image') {
+        
+        stage('Build Docker Image') {
             steps {
                 script {
                     // Build Docker image
@@ -41,7 +46,7 @@ stage('Build Docker Image') {
             }
         }
 
-   stage('Run Ansible Playbook') {
+       stage('Run Ansible Playbook') {
             steps {
                 script {
                     ansiblePlaybook(
@@ -50,6 +55,6 @@ stage('Build Docker Image') {
                      )
                 }
             }
+        }
     } 
 }
-
